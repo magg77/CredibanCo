@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CredibanCo</string>
+    <string name="title_transaction">Transacciones</string>
+    <string name="title_account">Mi Cuenta</string>
+</resources>
