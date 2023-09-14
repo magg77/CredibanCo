@@ -50,6 +50,9 @@ dependencies {
     //feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version" //navegacion dinamica fragments
 
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+
+    implementation 'com.google.android.material:material:1.9.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
