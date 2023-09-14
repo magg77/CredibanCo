@@ -1,6 +1,16 @@
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+
+    id 'com.google.firebase.crashlytics'
+
+    id 'com.google.devtools.ksp'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -18,17 +28,28 @@ android {
     }
 
     buildTypes {
+
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        /*sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8*/
+
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     buildFeatures {
         viewBinding true
@@ -39,10 +60,16 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines_android"
+    //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_android")
+
+
+    //live-data & view-model
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.liveData"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.liveData"
 
     //navigation components
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
@@ -50,9 +77,39 @@ dependencies {
     //feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version" //navegacion dinamica fragments
 
-    implementation 'androidx.core:core-splashscreen:1.0.1'
+    //recyclerView : dependencias para implementar merge adapter
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerView"
+    implementation "androidx.recyclerview:recyclerview-selection:$rootProject.recyclerview_selection" //For control over item selection of both touch and mouse driven selection
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$rootProject.recyclerview_selection"   //Implementa el patrón de deslizar para actualizar la IU.
 
-    implementation 'com.google.android.material:material:1.9.0'
+    //hilt
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
+    annotationProcessor "com.google.dagger:hilt-compiler:$rootProject.hilt_version"
+    //kapt "com.google.dagger:hilt-compiler:$rootProject.hilt_version"
+    ksp "com.google.dagger:hilt-compiler:$rootProject.hilt_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofit"
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor" //log interceptor
+
+    //room
+    implementation "androidx.room:room-ktx:$rootProject.room_version"           //compatibilidad para corrutinas destinada a las transacciones de base de datos
+    implementation "androidx.room:room-runtime:$rootProject.room_version"       //relacionado con la compilacion
+    annotationProcessor "androidx.room:room-compiler:$rootProject.room_version"
+    //to use Kotlin annotation processing tool (kapt)
+    //kapt "androidx.room:room-compiler:$room_version"
+    //to use Kotlin Symbol Processing (KSP)
+    ksp "androidx.room:room-compiler:$rootProject.room_version"         //relacionado con las anotaciones @quer - @select - @delete ..
+    implementation "androidx.room:room-paging:$rootProject.room_version"            // optional - Paging 3 Integration
+
+    //style layout
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation "com.google.android.material:material:$materialDesing"
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

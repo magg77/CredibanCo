@@ -1,4 +1,4 @@
-package com.prueba.credibanco
+package com.prueba.credibanco.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.prueba.credibanco.R
 import com.prueba.credibanco.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

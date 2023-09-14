@@ -1,4 +1,4 @@
-package com.prueba.credibanco
+package com.prueba.credibanco.ui
 
 import android.content.Intent
 import android.os.Build
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.prueba.credibanco.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
