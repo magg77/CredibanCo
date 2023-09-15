@@ -38,6 +38,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             debuggable true
+            manifestPlaceholders.cleartextTrafficPermitted ="true"
         }
 
     }
