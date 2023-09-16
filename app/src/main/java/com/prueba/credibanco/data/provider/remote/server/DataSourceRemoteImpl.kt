@@ -31,9 +31,14 @@ class DataSourceRemoteImpl @Inject constructor(private val webServiceInterface: 
     ): Resource.Success<List<AuthorizationResponse>> {
 
         var listWebService = mutableListOf<AuthorizationResponse>()
+        var mapa = mutableMapOf<String, String>(
+            "Content-Type" to "application/json",
+            "Authorization" to "Basic MDAwMTIzMDAwQUJD",
+            "X-Platform" to "Android"
+        )
 
         withContext(Dispatchers.IO) {
-            var authorizationResponse = webServiceInterface.authorizatioRrequestServer(authorizationRequest)
+            var authorizationResponse = webServiceInterface.authorization(mapa, authorizationRequest)
             listWebService = AuthorizationResponse_to_mutableList(authorizationResponse)
         }
 

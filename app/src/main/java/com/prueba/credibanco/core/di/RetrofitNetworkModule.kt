@@ -2,11 +2,13 @@ package com.prueba.credibanco.core.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.prueba.credibanco.BuildConfig
 import com.prueba.credibanco.data.provider.remote.server.WebServiceInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -27,33 +29,29 @@ object RetrofitNetworkModule {
         //build client
         val TIMEOUT: Long = 30
         return OkHttpClient.Builder()
-            .addInterceptor { chain ->
+            .addInterceptor { chain: Interceptor.Chain ->
                 chain.proceed(
                     //create request
                     chain.request()
                         .newBuilder()
                         //add headers to the request builder
                         .also {
-                            it.addHeader("Content-type", "application/json")
-                            it.addHeader("Authorization", "Basic MDAwMTIzMDAwQUJD")
+                            //it.addHeader("Content-type", "application/json")
+                            //it.addHeader("Authorizationssss", "Basic MDAwMTIzMDAwQUJD")
                         }.build()
 
                 )
             }
             //add timeouts, logging
-            .also { okHttpClient ->
-
-                okHttpClient.connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-                okHttpClient.readTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .also { okHttpClient:  OkHttpClient.Builder ->
                 //log if in debugging phase
-                /*if (BuildConfig.DEBUG) {
+                if (BuildConfig.DEBUG) {
                     val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
 
                         level = HttpLoggingInterceptor.Level.BODY
                     }
-
                     okHttpClient.addInterceptor(httpLoggingInterceptor)
-                }*/
+                }
             }
             .build()
     }

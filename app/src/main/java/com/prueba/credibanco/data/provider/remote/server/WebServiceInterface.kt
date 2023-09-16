@@ -8,6 +8,7 @@ import dagger.hilt.android.components.ViewModelComponent
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
+import retrofit2.http.HeaderMap
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -33,19 +34,18 @@ interface WebServiceInterface {
         "Platform", "Android"
     )*/
 
-
-
-    //metodo funciona ok
+    //metodo funciona ok: HEADERS STATICS IN INTERCEPTOR
     @POST("authorization")
     suspend fun authorizatioRrequestServer(
         @Body authorizationRequest: AuthorizationRequest
     ): AuthorizationResponse
 
-    /*@POST("authorization")
+    //metodo funciona ok: HEADERS DYNAMIC WITH @HeaderMap
+    @POST("authorization")
     suspend fun authorization(
-        @Header("Authorization") authorization: String,
+        @HeaderMap headers: Map<String, String>,
         @Body authorizationRequest: AuthorizationRequest
-    ): AuthorizationResponse*/
+    ): AuthorizationResponse
 
 
 
