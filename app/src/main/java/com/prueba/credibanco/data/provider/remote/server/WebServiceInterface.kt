@@ -2,15 +2,10 @@ package com.prueba.credibanco.data.provider.remote.server
 
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
-import retrofit2.http.Headers
+import retrofit2.http.HeaderMap
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 
 /**
@@ -35,18 +30,19 @@ interface WebServiceInterface {
 
 
 
-    //metodo funciona ok
-    @POST("authorization")
-    suspend fun authorizatioRrequestServer(
-        @Body authorizationRequest: AuthorizationRequest
-    ): AuthorizationResponse
-
+    //metodo funciona ok: HEADERS STATICS IN INTERCEPTOR
     /*@POST("authorization")
-    suspend fun authorization(
-        @Header("Authorization") authorization: String,
+    suspend fun authorizatioRrequestServer(
         @Body authorizationRequest: AuthorizationRequest
     ): AuthorizationResponse*/
 
 
+
+    ////metodo funciona ok: HEADERS DYNAMIC WITH @HeaderMap
+    @POST("authorization")
+    suspend fun authorization2(
+        @HeaderMap headers: Map<String, String>,
+        @Body authorizationRequest: AuthorizationRequest
+    ): AuthorizationResponse
 
 }

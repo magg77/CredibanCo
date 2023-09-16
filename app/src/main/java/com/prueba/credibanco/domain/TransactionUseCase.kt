@@ -19,7 +19,7 @@ import javax.inject.Inject
  *
  */
 
-class TransactionUseCase @Inject constructor(private val repo: RepoInterface) :
+class TransactionUseCase(private val repo: RepoInterface) :
     TransactionUseCaseContract {
 
 

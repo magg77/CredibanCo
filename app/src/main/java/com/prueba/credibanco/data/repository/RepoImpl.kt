@@ -19,7 +19,7 @@ import javax.inject.Inject
  *
  */
 
-class RepoImpl @Inject constructor(private val dataSourceRemote: DataSourceRemoteInterface) :
+class RepoImpl(private val dataSourceRemote: DataSourceRemoteInterface) :
     RepoInterface {
 
     override suspend fun authorization(

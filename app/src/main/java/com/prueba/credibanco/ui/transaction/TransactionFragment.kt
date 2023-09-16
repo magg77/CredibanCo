@@ -11,11 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
+import com.prueba.credibanco.data.provider.remote.server.DataSourceRemoteImpl
+import com.prueba.credibanco.data.repository.RepoImpl
 import com.prueba.credibanco.databinding.FragmentTransactionBinding
+import com.prueba.credibanco.domain.TransactionUseCase
 import com.prueba.credibanco.presentation.TransactionViewModel
+import com.prueba.credibanco.presentation.VMFactory
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class TransactionFragment : Fragment() {
 
     private var _binding: FragmentTransactionBinding? = null
@@ -24,7 +27,16 @@ class TransactionFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModelTransaction by viewModels<TransactionViewModel>()
+    private val viewModelTransaction by viewModels<TransactionViewModel>{
+        VMFactory(
+            TransactionUseCase(
+                RepoImpl(
+                    DataSourceRemoteImpl()
+                )
+            )
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,7 +90,7 @@ class TransactionFragment : Fragment() {
                     Toast.makeText(
                         requireContext(),
                         "Ocurrio un error al traer los datos: ${it.exception}",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                 }
 
