@@ -29,13 +29,10 @@ import javax.inject.Inject
  *
  */
 
-@HiltViewModel
-class TransactionViewModel @Inject constructor(private val useCase: TransactionUseCaseContract) :
+class TransactionViewModel(private val useCase: TransactionUseCaseContract) :
     ViewModel() {
 
     private val filterTransaction = MutableLiveData<AuthorizationRequest>()
-
-
 
     fun setFilterTransaction(authorizationRequest: AuthorizationRequest):  LiveData<Resource<List<AuthorizationResponse>>> = liveData(viewModelScope.coroutineContext + Dispatchers.Main) {
 

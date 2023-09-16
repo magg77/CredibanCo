@@ -19,7 +19,7 @@ import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 interface DataSourceRemoteInterface {
 
     suspend fun authorization(
-        authorization: String,
+        map: String,
         authorizationRequest: AuthorizationRequest
     ): Resource.Success<List<AuthorizationResponse>>
 
