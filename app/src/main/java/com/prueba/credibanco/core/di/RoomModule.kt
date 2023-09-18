@@ -37,7 +37,11 @@ object RoomModule {
             context.applicationContext,
             AppDatabaseRoom::class.java,
             BD_NAME_ROOM,
-        )
+        ).build()
     }
+
+    @Singleton
+    @Provides
+    fun provideLocalDao(db: AppDatabaseRoom) = db.transactionDao()
 
 }

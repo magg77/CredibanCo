@@ -1,7 +1,9 @@
 package com.prueba.credibanco.data.provider.local.serviceLocal
 
+import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.local.entity.AnnulmentEntity
 import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
+import javax.inject.Inject
 
 
 /**
@@ -16,17 +18,19 @@ import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
  *
  */
 
-class LocalDataSourceImpl : LocalDataSourceInterface{
+class LocalDataSourceImpl @Inject constructor(private val localserviceinterfaceDao: LocalServiceInterface_Dao) :
+    LocalDataSourceInterface {
 
-    override suspend fun getAuthorizationAll(): List<AuthorizationEntity> {
-        TODO("Not yet implemented")
+    override suspend fun getAuthorizationAll(): Resource<List<AuthorizationEntity>> {
+        return Resource.Success(localserviceinterfaceDao.getAuthorizationAll())
     }
 
     override suspend fun insertAthorization(authorizationEntity: AuthorizationEntity) {
-        TODO("Not yet implemented")
+        localserviceinterfaceDao.insertAthorization(authorizationEntity)
     }
 
+
     override suspend fun annulmentTransaction(annulmentEntity: AnnulmentEntity) {
-        TODO("Not yet implemented")
+        localserviceinterfaceDao.annulmentTransaction(annulmentEntity)
     }
 }

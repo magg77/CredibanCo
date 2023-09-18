@@ -30,8 +30,6 @@ interface LocalServiceInterface_Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAthorization(authorizationEntity: AuthorizationEntity)
 
-
-
     @Delete
     suspend fun annulmentTransaction(annulmentEntity: AnnulmentEntity)
 

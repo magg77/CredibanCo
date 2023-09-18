@@ -1,6 +1,8 @@
 package com.prueba.credibanco.domain
 
 import com.prueba.credibanco.core.valueObject.Resource
+import com.prueba.credibanco.data.provider.local.entity.AnnulmentEntity
+import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 
@@ -19,9 +21,20 @@ import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 
 interface TransactionUseCaseContract {
 
-    suspend operator fun invoke(
+    suspend fun create_transaction(
         auth: String,
         authorizationRequest: AuthorizationRequest
     ): Resource<List<AuthorizationResponse>>
+
+
+    suspend fun getAuthorizationAll(): Resource<List<AuthorizationEntity>>
+    suspend fun insertAthorization(authorizationEntity: AuthorizationEntity)
+
+    suspend fun annulmentTransaction(annulmentEntity: AnnulmentEntity)
+
+
+
+
+
 
 }

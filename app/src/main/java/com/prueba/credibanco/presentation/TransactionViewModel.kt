@@ -8,11 +8,14 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.prueba.credibanco.core.valueObject.Resource
+import com.prueba.credibanco.data.provider.local.entity.AnnulmentEntity
+import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 import com.prueba.credibanco.domain.TransactionUseCaseContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
@@ -54,12 +57,34 @@ class TransactionViewModel @Inject constructor(private val useCase: TransactionU
             try {
                 emit(
                     //useCase.invoke("${commerceCode}${terminalCode}", AuthorizationRequest())
-                    useCase.invoke("Basic MDAwMTIzMDAwQUJD", authorizationRequest)
+                    useCase.create_transaction("Basic MDAwMTIzMDAwQUJD", authorizationRequest)
                 )
             } catch (e: Exception) {
                 emit(Resource.Failure(e))
             }
+    }
+
+
+    fun getAuthorizationAll() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(useCase.getAuthorizationAll())
+        }catch (e:Exception){
+            emit(Resource.Failure(e))
         }
+    }
+
+    fun getAuthorizationAll(authorizationEntity: AuthorizationEntity) {
+        viewModelScope.launch {
+            useCase.insertAthorization(authorizationEntity)
+        }
+    }
+
+    fun annulmentTransaction(annulmentEntity: AnnulmentEntity) {
+        viewModelScope.launch {
+            useCase.annulmentTransaction(annulmentEntity)
+        }
+    }
 
 
 

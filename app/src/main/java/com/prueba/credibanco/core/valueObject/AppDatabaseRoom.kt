@@ -22,7 +22,6 @@ import com.prueba.credibanco.data.provider.local.serviceLocal.LocalServiceInterf
  */
 
 @Database(entities = [AuthorizationEntity::class, AnnulmentEntity::class], version = 1, exportSchema = true)
-@TypeConverters(ConvertersDateRoom::class)
 abstract class AppDatabaseRoom: RoomDatabase() {
 
     abstract fun transactionDao(): LocalServiceInterface_Dao

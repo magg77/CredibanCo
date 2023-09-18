@@ -26,6 +26,5 @@ data class AuthorizationEntity (
     @ColumnInfo val terminalCode: String,
     @ColumnInfo val amount: String,
     @ColumnInfo val card: String,
-    @TypeConverters(ConvertersDateRoom::class)
-    @ColumnInfo val dateAuthorization: Date
+    //@ColumnInfo val dateAuthorization: Date
 )

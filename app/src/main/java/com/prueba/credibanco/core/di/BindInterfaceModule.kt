@@ -1,5 +1,7 @@
 package com.prueba.credibanco.core.di
 
+import com.prueba.credibanco.data.provider.local.serviceLocal.LocalDataSourceImpl
+import com.prueba.credibanco.data.provider.local.serviceLocal.LocalDataSourceInterface
 import com.prueba.credibanco.data.provider.remote.server.DataSourceRemoteImpl
 import com.prueba.credibanco.data.provider.remote.server.DataSourceRemoteInterface
 import com.prueba.credibanco.data.repository.RepoImpl
@@ -30,14 +32,17 @@ abstract class BindInterfaceModule {
 
     @Binds
     abstract fun bindTransactionUseCase(transactionUseCase: TransactionUseCase)
-    : TransactionUseCaseContract
+            : TransactionUseCaseContract
 
     @Binds
     abstract fun bindRepoImpl(repoImpl: RepoImpl)
-    : RepoInterface
+            : RepoInterface
 
     @Binds
     abstract fun bindRemoteDataSource(dataSourceRemoteImpl: DataSourceRemoteImpl)
-    : DataSourceRemoteInterface
+            : DataSourceRemoteInterface
+
+    @Binds
+    abstract fun bindLocalDataSource(localDataSourceInterface: LocalDataSourceImpl): LocalDataSourceInterface
 
 }

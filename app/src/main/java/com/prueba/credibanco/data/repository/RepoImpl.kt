@@ -1,6 +1,9 @@
 package com.prueba.credibanco.data.repository
 
 import com.prueba.credibanco.core.valueObject.Resource
+import com.prueba.credibanco.data.provider.local.entity.AnnulmentEntity
+import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
+import com.prueba.credibanco.data.provider.local.serviceLocal.LocalDataSourceInterface
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 import com.prueba.credibanco.data.provider.remote.server.DataSourceRemoteInterface
@@ -19,14 +22,30 @@ import javax.inject.Inject
  *
  */
 
-class RepoImpl @Inject constructor(private val dataSourceRemote: DataSourceRemoteInterface) :
+class RepoImpl @Inject constructor(
+    private val dataSourceRemote: DataSourceRemoteInterface,
+    private val localDataSourceInterface: LocalDataSourceInterface
+) :
     RepoInterface {
 
-    override suspend fun authorization(
+    override suspend fun authorization_Repo(
         auth: String,
         authorizationRequest: AuthorizationRequest
     ): Resource<List<AuthorizationResponse>> {
         return dataSourceRemote.authorization(auth, authorizationRequest)
     }
+
+
+
+    override suspend fun getAuthorizationAll_Repo(): Resource<List<AuthorizationEntity>> = localDataSourceInterface.getAuthorizationAll()
+
+    override suspend fun insertAthorization_Repo(authorizationEntity: AuthorizationEntity) {
+        localDataSourceInterface.insertAthorization(authorizationEntity)
+    }
+
+    override suspend fun annulmentTransaction_Repo(annulmentEntity: AnnulmentEntity) {
+        localDataSourceInterface.annulmentTransaction(annulmentEntity)
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.prueba.credibanco.data.provider.local.serviceLocal
 
+import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.local.entity.AnnulmentEntity
 import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
 
@@ -18,7 +19,7 @@ import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
 
 interface LocalDataSourceInterface {
 
-    suspend fun getAuthorizationAll(): List<AuthorizationEntity>
+    suspend fun getAuthorizationAll(): Resource<List<AuthorizationEntity>>
     suspend fun insertAthorization(authorizationEntity: AuthorizationEntity)
 
     suspend fun annulmentTransaction(annulmentEntity: AnnulmentEntity)

@@ -23,6 +23,5 @@ import java.util.Date
 data class AnnulmentEntity(
     @PrimaryKey val receipId: Long = 0,
     @ColumnInfo val rrn: String = "",
-    @TypeConverters(ConvertersDateRoom::class)
-    @ColumnInfo val dateAnnulment: Date
+    //@ColumnInfo val dateAnnulment: Date
 )
