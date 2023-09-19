@@ -19,11 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class TransactionFragment : Fragment() {
 
     private var _binding: FragmentTransactionBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
     private val viewModelTransaction by viewModels<TransactionViewModel>()
 
     override fun onCreateView(
@@ -33,7 +29,8 @@ class TransactionFragment : Fragment() {
     ): View {
 
         _binding = FragmentTransactionBinding.inflate(inflater, container, false)
-        return binding.root
+        val root: View = binding.root
+        return root
     }
 
 
@@ -47,7 +44,6 @@ class TransactionFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
     private fun setupObservers() {
         viewModelTransaction.setFilterTransaction(

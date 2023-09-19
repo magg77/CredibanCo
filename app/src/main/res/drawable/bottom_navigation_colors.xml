@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item
+        android:state_focused="true"
+        android:color="#4E1EFF" />
+    <item
+        android:state_checked="false"
+        android:color="#AC0000" />
+    <item android:state_pressed="true"
+        android:color="#00CD52"/>-->
+
+    <!--<item
+        android:state_checked="true"
+        android:color="#000000" />
+    <item
+        android:state_checked="false"
+        android:color="#505050" />-->
+
+    <!-- Selected. -->
+    <!--<item android:alpha="@dimen/m3_comp_navigation_bar_pressed_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_active_pressed_state_layer_color"
+        android:state_pressed="true" android:state_selected="true"/>
+    <item android:alpha="@dimen/m3_comp_navigation_bar_focus_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_active_focus_state_layer_color"
+        android:state_focused="true" android:state_selected="true"/>
+    <item android:alpha="@dimen/m3_comp_navigation_bar_hover_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_active_hover_state_layer_color"
+        android:state_hovered="true" android:state_selected="true"/>
+
+    &lt;!&ndash; Unselected. &ndash;&gt;
+    <item android:alpha="@dimen/m3_comp_navigation_bar_pressed_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_inactive_pressed_state_layer_color"
+        android:state_pressed="true"/>
+    <item android:alpha="@dimen/m3_comp_navigation_bar_focus_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_inactive_focus_state_layer_color"
+        android:state_focused="true"/>
+    <item android:alpha="@dimen/m3_comp_navigation_bar_hover_state_layer_opacity"
+        android:color="@macro/m3_comp_navigation_bar_inactive_hover_state_layer_color"
+        android:state_hovered="true"/>
+    <item android:color="@android:color/transparent"/>-->
+
+
+</selector>

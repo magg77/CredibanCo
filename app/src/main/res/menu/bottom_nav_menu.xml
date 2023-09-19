@@ -4,10 +4,12 @@
     <item
         android:id="@+id/navigation_transaction"
         android:icon="@drawable/icon_transaction"
+        android:enabled="true"
         android:title="@string/title_transaction" />
 
     <item
         android:id="@+id/navigation_account"
+        android:enabled="true"
         android:icon="@drawable/icon_account"
         android:title="@string/title_account" />
 
