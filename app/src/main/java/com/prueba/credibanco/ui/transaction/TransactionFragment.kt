@@ -87,7 +87,6 @@ class TransactionFragment : Fragment() {
                 "1234567890123456"
             )
         ).observe(viewLifecycleOwner, Observer {
-
             when (it) {
                 is Resource.Loading -> {
                     //binding.progressbarHome.visibility = View.VISIBLE
@@ -109,10 +108,7 @@ class TransactionFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-
             }
-
         })
 
     }
