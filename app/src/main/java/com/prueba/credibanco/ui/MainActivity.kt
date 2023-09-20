@@ -1,8 +1,11 @@
 package com.prueba.credibanco.ui
 
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -39,6 +42,25 @@ class MainActivity : AppCompatActivity() {
         */
 
         bottomNavigationViewNavView.setupWithNavController(navController)
-
+        bottomNavigationViewNavView.setOnApplyWindowInsetsListener(null)
     }
+
+    /*override fun onBackPressed() {
+
+        this.onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Log.i("back", "1111  hola activity, si ****************")
+            }
+
+        })
+
+        if (onBackPressedDispatcher.hasEnabledCallbacks()) {
+            super.onBackPressed();   // dispatch event to custom callback, which implemented in fragment
+            Log.i("back", "hola activity, si ****************")
+        } else {
+            // use activity backPressed if there is no callback   added to mOnBackPressedDispatcher
+            Log.i("back", "hola activity, nnnnoooooooooooooooooooooooo")
+        }
+    }*/
+
 }

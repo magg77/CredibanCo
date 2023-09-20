@@ -2,4 +2,8 @@
     <string name="app_name">CredibanCo</string>
     <string name="title_transaction">Transacciones</string>
     <string name="title_account">Mi Cuenta</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

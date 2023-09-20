@@ -87,6 +87,7 @@ dependencies {
 
     //hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "com.google.dagger:hilt-compiler:$rootProject.hilt_version"
     //kapt "com.google.dagger:hilt-compiler:$rootProject.hilt_version"
     ksp "com.google.dagger:hilt-compiler:$rootProject.hilt_version"

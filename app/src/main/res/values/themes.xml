@@ -38,10 +38,14 @@
 
         <!-- Customize your theme here. -->
         <!-- TextAppereance color -->
-        <item name="android:textColor">@color/textColor_light</item>                 <!--Atributo xml para establecer un color en el texto de cualquier vista dada.-->
-        <item name="android:textColorPrimary">@color/textColorPrimary_light</item>        <!--El color de texto más destacado: color de texto predeterminado para los botones habilitados y las vistas de texto grandes -->
-        <item name="android:textColorSecondary">@color/textColorSecondary_light</item>      <!--Color de texto secundario: color de texto predeterminado para las vistas de texto medianas y pequeñas. -->
-        <item name="android:textColorHint">@color/textColorHintDisabled_light</item>           <!--Sugerencias y texto deshabilitado-->
+        <item name="android:textColor">@color/textColor_light
+        </item>                 <!--Atributo xml para establecer un color en el texto de cualquier vista dada.-->
+        <item name="android:textColorPrimary">@color/textColorPrimary_light
+        </item>        <!--El color de texto más destacado: color de texto predeterminado para los botones habilitados y las vistas de texto grandes -->
+        <item name="android:textColorSecondary">@color/textColorSecondary_light
+        </item>      <!--Color de texto secundario: color de texto predeterminado para las vistas de texto medianas y pequeñas. -->
+        <item name="android:textColorHint">@color/textColorHintDisabled_light
+        </item>           <!--Sugerencias y texto deshabilitado-->
 
         <item name="android:navigationBarColor">#000000</item>
         <item name="colorOutline">#830000</item>
@@ -58,10 +62,7 @@
         <item name="chipSurfaceColor">#328132</item>
 
 
-
     </style>
-
-
 
 
     <style name="SplashScreenTheme" parent="Theme.SplashScreen.IconBackground">
@@ -80,6 +81,21 @@
         <item name="android:navigationBarColor">#000000</item>
 
         <item name="postSplashScreenTheme">@style/Theme.CredibanCo</item>
+    </style>
+
+    <style name="ThemeOverlay.CredibanCo.FullscreenContainer" parent="Theme.CredibanCo">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <!-- Set parent theme as app theme. -->
+    <style name="DialogTheme" parent="Theme.CredibanCo">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
     </style>
 
 </resources>

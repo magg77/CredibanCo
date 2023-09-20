@@ -6,9 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.prueba.credibanco.R
 import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.databinding.FragmentTransactionBinding
@@ -38,6 +44,32 @@ class TransactionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
+        eventsClick()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        requireActivity().onBackPressedDispatcher.addCallback(this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (!findNavController().navigateUp()) {
+                        if (isEnabled) {
+                            Log.i("back", "00000  atras dialog")
+                            isEnabled = false
+                            requireActivity().onBackPressedDispatcher.onBackPressed()
+                        }
+                        Log.i("back", "111  atras dialog")
+                    } else {
+                        var prueba = "falso"
+                        Log.i("back", "2222 atras dialog")
+                    }
+                    Log.i("back", "atras dialog")
+                }
+            }
+        )
+
     }
 
     override fun onDestroyView() {
@@ -82,6 +114,24 @@ class TransactionFragment : Fragment() {
             }
 
         })
+
+    }
+
+    private fun eventsClick() {
+        binding.mbCreateTransactionFragment.setOnClickListener {
+
+            findNavController().navigate(R.id.action_navigation_transaction_to_createTransactionFragment)
+
+            /*findNavController().addOnDestinationChangedListener { _, destination, _ ->
+                //(activity as AppCompatActivity?)!!
+            }*/
+
+            /*val navHost = NavHostFragment()
+            childFragmentManager.beginTransaction().add(R.id.nav_host_fragment_activity_main, navHost).commitNow()
+            navHost.navController.setGraph(R.navigation.mobile_navigation)*/
+
+        }
+
 
     }
 

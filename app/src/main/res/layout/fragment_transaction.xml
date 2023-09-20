@@ -107,7 +107,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mb_leer_mas_recyclerView_fragment_home"
+            android:id="@+id/mb_create_transaction_fragment"
             style="@style/Widget.Material3.Button.IconButton.Filled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -9,12 +9,34 @@
         android:id="@+id/navigation_transaction"
         android:name="com.prueba.credibanco.ui.transaction.TransactionFragment"
         android:label="@string/title_transaction"
-        tools:layout="@layout/fragment_transaction" />
+        tools:layout="@layout/fragment_transaction">
+        <action
+            android:id="@+id/action_navigation_transaction_to_createTransactionFragment"
+            app:destination="@id/createTransactionFragment" />
+        <action
+            android:id="@+id/action_navigation_transaction_to_createFullscreenFragment"
+            app:destination="@id/createFullscreenFragment" />
+    </fragment>
+
+        <dialog
+            android:id="@+id/createTransactionFragment"
+            android:name="com.prueba.credibanco.ui.transaction.CreateTransactionFragment"
+            android:label="fragment_create_transaction"
+            tools:layout="@layout/fragment_create_transaction" />
+        <fragment
+            android:id="@+id/createFullscreenFragment"
+            android:name="com.prueba.credibanco.CreateFullscreenFragment"
+            android:label="fragment_create_fullscreen"
+            tools:layout="@layout/fragment_create_fullscreen" />
+
+
 
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.prueba.credibanco.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
+
+
 
 </navigation>
