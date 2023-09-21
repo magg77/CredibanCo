@@ -30,7 +30,7 @@ interface RepoInterface {
     suspend fun authorization_Repo(
         auth: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource<List<AuthorizationResponse>>
+    ): Resource<AuthorizationResponse>
 
 
     //LOCAL BD

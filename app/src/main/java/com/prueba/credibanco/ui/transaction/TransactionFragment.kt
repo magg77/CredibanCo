@@ -26,7 +26,6 @@ class TransactionFragment : Fragment() {
 
     private var _binding: FragmentTransactionBinding? = null
     private val binding get() = _binding!!
-    private val viewModelTransaction by viewModels<TransactionViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +42,6 @@ class TransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupObservers()
         eventsClick()
 
     }
@@ -77,41 +75,6 @@ class TransactionFragment : Fragment() {
         _binding = null
     }
 
-    private fun setupObservers() {
-        viewModelTransaction.setFilterTransaction(
-            AuthorizationRequest(
-                "001",
-                "000123",
-                "000ABC",
-                "12345",
-                "1234567890123456"
-            )
-        ).observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Loading -> {
-                    //binding.progressbarHome.visibility = View.VISIBLE
-                    Log.i("result", "cargando")
-                }
-
-                is Resource.Success -> {
-                    //binding.progressbarHome.visibility = View.GONE
-                    Log.i("result", "${it.data}")
-                }
-
-                is Resource.Failure -> {
-                    //binding.progressbarHome.visibility = View.GONE
-
-                    Log.e("result0", "${it.exception}")
-                    Toast.makeText(
-                        requireContext(),
-                        "Ocurrio un error al traer los datos: ${it.exception}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
-
-    }
 
     private fun eventsClick() {
         binding.mbCreateTransactionFragment.setOnClickListener {

@@ -3,6 +3,7 @@ package com.prueba.credibanco.data.provider.remote.server
 import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
+import retrofit2.Response
 
 /**
  * Created by
@@ -18,9 +19,20 @@ import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
 
 interface DataSourceRemoteInterface {
 
-    suspend fun authorization(
+    suspend fun authorization(authorization: String, authorizationRequest: AuthorizationRequest): Response<AuthorizationResponse>
+
+    /*suspend fun authorization(
         authorization: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource.Success<List<AuthorizationResponse>>
+    ): Resource.Success<List<AuthorizationResponse>>*/
+
+    /*suspend fun <T> authorization(
+        authorization: String,
+        authorizationRequest: AuthorizationRequest
+    ): Resource<T>*/
+
+    //suspend fun <T> authorization(apiCall: suspend () -> Response<T>): Resource<T>
+
+
 
 }

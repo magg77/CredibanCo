@@ -28,7 +28,7 @@ class TransactionUseCase @Inject constructor(private val repo: RepoInterface) :
     override suspend fun create_transaction(
         auth: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource<List<AuthorizationResponse>> {
+    ): Resource<AuthorizationResponse> {
         return repo.authorization_Repo(auth, authorizationRequest)
     }
 

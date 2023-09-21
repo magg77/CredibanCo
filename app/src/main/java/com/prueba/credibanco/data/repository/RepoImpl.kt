@@ -6,7 +6,10 @@ import com.prueba.credibanco.data.provider.local.entity.AuthorizationEntity
 import com.prueba.credibanco.data.provider.local.serviceLocal.LocalDataSourceInterface
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
+import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse_to_mutableList
+import com.prueba.credibanco.data.provider.remote.server.ApiResponse
 import com.prueba.credibanco.data.provider.remote.server.DataSourceRemoteInterface
+import java.util.UUID
 import javax.inject.Inject
 
 
@@ -25,19 +28,41 @@ import javax.inject.Inject
 class RepoImpl @Inject constructor(
     private val dataSourceRemote: DataSourceRemoteInterface,
     private val localDataSourceInterface: LocalDataSourceInterface
-) :
+) : ApiResponse(),
     RepoInterface {
 
     override suspend fun authorization_Repo(
         auth: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource<List<AuthorizationResponse>> {
-        return dataSourceRemote.authorization(auth, authorizationRequest)
+    ): Resource<AuthorizationResponse> {
+
+        var data = responseNetwork { dataSourceRemote.authorization(auth, authorizationRequest) }
+
+        if (data.data != null) {
+            if (data.data!!.statusCode == "00" && data.data!!.statusDescription == "Aprobada") {
+
+                insertAthorization_Repo(
+                    AuthorizationEntity(
+                        id = UUID.randomUUID().toString(),
+                        receiptId = data.data!!.receiptId.toString(),
+                        rrn = data.data!!.rrn.toString(),
+                        amount = authorizationRequest.amount,
+                        card = authorizationRequest.card
+                    )
+                )
+            }
+        }
+
+        with(data.data) {
+            this?.let { AuthorizationResponse_to_mutableList(it) }
+        }
+
+        return data
     }
 
 
-
-    override suspend fun getAuthorizationAll_Repo(): Resource<List<AuthorizationEntity>> = localDataSourceInterface.getAuthorizationAll()
+    override suspend fun getAuthorizationAll_Repo(): Resource<List<AuthorizationEntity>> =
+        localDataSourceInterface.getAuthorizationAll()
 
     override suspend fun insertAthorization_Repo(authorizationEntity: AuthorizationEntity) {
         localDataSourceInterface.insertAthorization(authorizationEntity)

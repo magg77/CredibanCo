@@ -24,7 +24,7 @@ interface TransactionUseCaseContract {
     suspend fun create_transaction(
         auth: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource<List<AuthorizationResponse>>
+    ): Resource<AuthorizationResponse>
 
 
     suspend fun getAuthorizationAll(): Resource<List<AuthorizationEntity>>

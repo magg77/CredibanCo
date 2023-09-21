@@ -3,9 +3,6 @@ package com.prueba.credibanco.data.provider.remote.server
 import com.prueba.credibanco.core.valueObject.Resource
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationRequest
 import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse
-import com.prueba.credibanco.data.provider.remote.model.AuthorizationResponse_to_mutableList
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -25,10 +22,11 @@ import javax.inject.Inject
 class DataSourceRemoteImpl @Inject constructor(private val webServiceInterface: WebServiceInterface) :
     DataSourceRemoteInterface {
 
-    override suspend fun authorization(
+
+    /*suspend fun old(
         authorization: String,
         authorizationRequest: AuthorizationRequest
-    ): Resource.Success<List<AuthorizationResponse>> {
+    ): Resource<AuthorizationResponse> {
 
         var listWebService = mutableListOf<AuthorizationResponse>()
         var mapa = mutableMapOf<String, String>(
@@ -38,12 +36,29 @@ class DataSourceRemoteImpl @Inject constructor(private val webServiceInterface: 
         )
 
         withContext(Dispatchers.IO) {
-            var authorizationResponse = webServiceInterface.authorization(mapa, authorizationRequest)
-            listWebService = AuthorizationResponse_to_mutableList(authorizationResponse)
+            var responseBody = webServiceInterface.authorization(mapa, authorizationRequest)
+            //var listWebService = AuthorizationResponse_to_mutableList(authorizationResponse)
+            if (responseBody.isSuccessful) {
+                var responseJson = responseBody
+            }
         }
 
         return Resource.Success(listWebService)
 
+    }*/
+
+   /* suspend fun <T> authorization(apiCall: suspend () -> Response<T>): Resource<T> {
+        TODO("Not yet implemented")
+    }*/
+
+    override suspend fun authorization(authorization: String, authorizationRequest: AuthorizationRequest): Response<AuthorizationResponse> {
+        var listWebService = mutableListOf<AuthorizationResponse>()
+        var mapa = mutableMapOf<String, String>(
+            "Content-Type" to "application/json",
+            "Authorization" to "Basic MDAwMTIzMDAwQUJD",
+            "X-Platform" to "Android"
+        )
+        return webServiceInterface.authorization(mapa, authorizationRequest)
     }
 
 

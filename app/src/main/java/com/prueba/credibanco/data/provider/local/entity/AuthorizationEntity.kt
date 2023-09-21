@@ -21,10 +21,10 @@ import java.util.Date
 
 @Entity(tableName = "AuthorizationEntity")
 data class AuthorizationEntity (
-    @PrimaryKey val id: Long,
-    @ColumnInfo val commerceCode: String,
-    @ColumnInfo val terminalCode: String,
+    @PrimaryKey val id: String,
+    @ColumnInfo val receiptId: String,
+    @ColumnInfo val rrn: String,
     @ColumnInfo val amount: String,
-    @ColumnInfo val card: String,
+    @ColumnInfo val card: String
     //@ColumnInfo val dateAuthorization: Date
 )
